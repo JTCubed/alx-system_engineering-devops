@@ -2,3 +2,4 @@
 1-confused_smiley prints confused smiley
 2-hellofile reads contents of /etc/passwd
 3-twofiles reads contents of two directories
+4-lastlines file reads last 10 lines
