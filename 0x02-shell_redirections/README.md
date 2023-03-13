@@ -6,3 +6,4 @@
 5-firstlines reads first 10 lines of a file
 6-third_line reads the 3rd line of iacta
 8-cwd_state prints pwd to specified file
+9-duplicate_last_line duplicates last line of a file
