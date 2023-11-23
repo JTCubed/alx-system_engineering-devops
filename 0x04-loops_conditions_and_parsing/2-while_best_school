@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#prints "Best School" ten times using a while loop
+
+number=10
+
+while [[ "$number" -gt 0 ]]
+do
+	echo "Best School"
+	(( number-- ))
+done
