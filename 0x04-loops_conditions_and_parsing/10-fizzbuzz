@@ -9,10 +9,10 @@ do
 		echo "FizzBuzz"
 	elif (( number % 3 == 0 ));
 	then
-		echo "Buzz"
+		echo "Fizz"
 	elif (( number % 5 == 0 ));
 	then
-		echo "Fizz"
+		echo "Buzz"
 	else
 		echo "$number"
 	fi

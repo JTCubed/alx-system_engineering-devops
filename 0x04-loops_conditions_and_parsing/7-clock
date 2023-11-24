@@ -11,7 +11,7 @@ do
     do
 	if [ $minute -eq 1 ];
 	   then
-	       echo "hour: $hour"
+	       echo "Hour: $hour"
 	fi
 	echo "$minute"
 	if [ $minute -eq 59 ];
