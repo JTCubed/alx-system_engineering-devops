@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #prints "To infinity and beyond" indefinitely
-while [ True ];
+number=1
+while [ $number -eq 1 ];
 do
     echo "To infinity and beyond"
     sleep 2
