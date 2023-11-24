@@ -2,5 +2,8 @@
 #displays:The content of the current directory in a list format
 
 for i in $(ls); do
-    echo "$i" | tr -d "[:digit:]" | tr -d "-"
+    if [[ ! $i == .* && -f $i ]];
+    then
+       echo "$i" | tr -d "[:digit:]" | tr -d "-"
+    fi
 done

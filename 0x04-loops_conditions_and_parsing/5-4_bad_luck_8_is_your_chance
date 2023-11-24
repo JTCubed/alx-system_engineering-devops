@@ -4,7 +4,7 @@
 
 number=0
 
-while [ $number -le 10 ]
+while [ $number -lt 10 ]
 do
 	if [ $number -eq 4 ]
 	then
