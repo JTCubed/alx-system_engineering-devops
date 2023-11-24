@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#kills ./4-to_infinity_and_beyond
+pid=$(ps aux | grep 'infinity' | grep -v 'grep'| awk '{print $2}')
+kill $pid
