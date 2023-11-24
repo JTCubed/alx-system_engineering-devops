@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 #displays:The content of the current directory in a list format
 
-for i in $(ls); do
+for i in *; do
     if [[ ! $i == .* && -f $i ]];
     then
-       echo "$i" | tr -d "[:digit:]" | tr -d "-"
+	name=$(echo "$i" | cut -d '-' -f 2-)
+	echo "$name"
     fi
 done
