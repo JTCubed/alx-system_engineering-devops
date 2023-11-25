@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+function SIGTERM_HANDLE()
+{
+	echo "I hate the kill command"
+}
+
+trap SIGTERM_HANDLE SIGTERM
+
+function SIGINT_HANDLE()
+{
+	echo "Y U no love me?!"
+}
+
+trap SIGINT_HANDLE SIGINT
+
+number=1
+
+while [ $number -eq 1 ];
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
