@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#prints "To infinity and beyond" then "I am invincible!!!" on SIGTERM
+
+
+function Signal_handle() {
+    echo "I am invincible!!!"
+}
+
+trap Signal_handle SIGTERM
+
+
+number=1
+while [ $number -eq 1 ];
+do
+	echo "To infinity and beyond"
+	sleep 2
+done

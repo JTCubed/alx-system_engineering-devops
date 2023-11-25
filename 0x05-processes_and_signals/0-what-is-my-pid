@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #displays its own PID
 
-ps -u
+ps -aux | grep "./0-what-is-my-pid%d" | awk '{print $2}'
