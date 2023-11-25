@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
+#A more advanced version of file 7
+
+pid_file="/var/run/myscript.pid"
 
 function SIGTERM_HANDLE()
 {
-	echo "I hate the kill command"
+    echo "I hate the kill command"
+    cleanup_and_exit
 }
 
 trap SIGTERM_HANDLE SIGTERM
@@ -13,6 +17,20 @@ function SIGINT_HANDLE()
 }
 
 trap SIGINT_HANDLE SIGINT
+
+function SIGQUIT_HANDLE()
+{
+    cleanup_and_exit
+}
+
+trap SIGQUIT_HANDLE SIGQUIT
+
+function cleanup_and_quit()
+{
+    rm -f "$pid_file"
+}
+
+echo $$ > "$pid_file"
 
 number=1
 
