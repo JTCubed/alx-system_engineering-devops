@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #configures an Ubuntu server with the below requirements
-sudo cp /etc/hosts /etc/hosts.bak
+cp /etc/hosts ~/hosts.bak
+sed -i 's/127.0.0.1[[:space:]]*localhost/127.0.0.2 localhost/' ~/hosts.bak
 
-sed  "s 127.0.0.1[[:tab:]]localhost" >> /etc/hosts
+echo -e "8.8.8.8\tfacebook.com" >> ~/hosts.bak
 
-#echo -e "8.8.8.8\tfacebook.com" >> /etc/hosts
+cp -f ~/hosts.bak /etc/hosts
