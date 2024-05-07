@@ -1,13 +1,32 @@
 # Define the class for Nginx installation and configuration
 class nginx {
-  
+
   package { 'nginx':
     ensure => installed,
   }
 
   file { '/etc/nginx/sites-available/default':
     ensure  => file,
-    content => template('nginx/default.erb'),
+    content => '
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
@@ -30,7 +49,15 @@ class nginx {
 class redirect {
   file { '/etc/nginx/sites-available/redirect_me':
     ensure  => file,
-    content => template('nginx/redirect_me.erb'),
+    content => '
+server {
+    listen 80;
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/;
+    }
+}',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
