@@ -6,7 +6,7 @@ apt-get install nginx -y
 
 sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 
-sudo service nginx restart
+/etc/init.d/nginx reload
 
 echo "
 server {
@@ -16,9 +16,9 @@ server {
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
-}" > /etc/nginx/sites-available/redirect
+}" > /etc/nginx/sites-available/temp_redirect
 
-ln -s /etc/nginx/sites-available/redirect /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/temp_redirect /etc/nginx/sites-enabled/
 
 rm /etc/nginx/sites-enabled/default
 
