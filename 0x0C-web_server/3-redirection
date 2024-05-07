@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
 #
 
-new_string="server_name _;\n\return 301 https:\/\/www.youtube.com;"
-sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
+apt-get update
+apt-get install nginx -y
+
+sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 
 sudo service nginx restart
+
+echo "
+server {
+    listen 80;
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}" > /etc/nginx/sites-available/redirect
+
+ln -s /etc/nginx/sites-available/redirect /etc/nginx/sites-enabled/
+
+rm /etc/nginx/sites-enabled/default
+
+/etc/init.d/nginx reload
