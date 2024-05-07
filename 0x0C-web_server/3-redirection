@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 #
 
-apt-get update
-apt-get install nginx -y
+sudo apt-get update
+sudo apt-get install nginx -y
 
 sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 
-/etc/init.d/nginx reload
-
-echo "
+sudo /etc/init.d/nginx reload
+sudo chown -R $USER:$USER /usr/share/nginx
+sudo rm /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.html
+sudo echo "Hello World!" > /usr/share/nginx/html/index.html
+sudo echo "
 server {
     listen 80;
     server_name _;
@@ -22,4 +25,4 @@ ln -s /etc/nginx/sites-available/temp_redirect /etc/nginx/sites-enabled/
 
 rm /etc/nginx/sites-enabled/default
 
-/etc/init.d/nginx reload
+sudo /etc/init.d/nginx reload
