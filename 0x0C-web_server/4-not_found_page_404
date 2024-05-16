@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Script creates custom 404 page for nginx
+sudo apt update -y
+sudo apt install nginx -y
+
+sudo chown -R $USER:$USER /var/www
+sudo chmod -R 755 /var/www
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_error.html
+
+replace="listen 80 default_server;\n\terror_page 404 \/custom_error.html;\n\tlocation = \/custom_error.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$replace/" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
