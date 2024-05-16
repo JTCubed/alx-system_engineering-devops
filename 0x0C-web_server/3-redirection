@@ -3,7 +3,7 @@
 
 sudo apt-get update
 sudo apt-get install nginx -y
-sudo chown -R $USER:$USER /var/www
+sudo chown -R "$USER":"$USER" /var/www
 sudo chmod -R 755 /var/www
 replace="server_name _;\n\trewrite ^\/redirect_me https:\/\/youtube.com permanent;"
 sudo sed -i "s/server_name _;/$replace/" /etc/nginx/sites-enabled/default
