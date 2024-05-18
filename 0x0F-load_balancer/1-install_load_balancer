@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Script installs and configures haproxy
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install haproxy -y
+str='frontend main
+	      bind *:80
+	      default_backend http_back
+	      timeout client 60s
+
+
+backend http_back
+	timeout connect 10s
+	timeout server 100s
+	balance roundrobin
+	server web-01 34.229.184.16:80
+	server web-02 52.91.146.69:80'
+
+echo $str | sudo tee /etc/haproxy/haproxy.cfg
+
+sudo systemctl restart haproxy
