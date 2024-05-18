@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# configures new nginx istallation to have a custom header
+sudo apt update -y && sudo apt-get install nginx -y
+sudo chown -R "$USER":"$USER" /var/www
+sudo chmod -R 755 /var/www
+echo "Hello World" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+new_string="listen 80;\n\tserver_name_ _;\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/youtube.com;\n\t\tadd_header X-Served-By '$HOSTNAME' always;\n\t}\n\tlocation \/ {\n\t\tadd_header X-Served-By '$HOSTNAME' always;\n\t}\n\terror_page 404 \/cuxtom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t\tadd_header X-Served-By '$HOSTNAME' always;\n\t}\n"
+sudo sed -i 's/server_name _;/"$new_string"/' /etc/nginx/sites-enabled/default
+sudo service nginx restart
