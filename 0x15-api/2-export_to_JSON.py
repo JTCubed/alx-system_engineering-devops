@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """export to a json file in specific format"""
-import requests
 import json
+import requests
 import sys
 
 
