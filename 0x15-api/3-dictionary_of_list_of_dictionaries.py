@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """exports all tasks and users into a file"""
-import requests
 import json
+import requests
 import sys
 
 
@@ -9,14 +9,14 @@ def all_user():
     """returns user json"""
     user_url = "https://jsonplaceholder.typicode.com/users"
     response = requests.get(user_url)
-    return(response.json())
+    return (response.json())
 
 
 def all_todos():
     """returns all json todo"""
     tasks_url = "https://jsonplaceholder.typicode.com/todos"
     res = requests.get(tasks_url)
-    return(res.json())
+    return (res.json())
 
 
 def export_all_to_json():

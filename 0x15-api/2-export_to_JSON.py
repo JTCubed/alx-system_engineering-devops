@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-
+"""export to a json file in specific format"""
 import requests
 import json
 import sys
 
 
 def export_to_json(emp_num):
-
+    """export to a json file in specific format"""
     url = "https://jsonplaceholder.typicode.com/users/{}".format(
         emp_num)
 

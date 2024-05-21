@@ -4,10 +4,11 @@ using this REST API, for a given employee ID, returns information about
 his/her TODO list progress
 """
 
-from urllib.request import urlopen
-import sys
+
 import json
 import requests
+import sys
+from urllib.request import urlopen
 
 
 def empreq(emp_num):
@@ -16,7 +17,7 @@ def empreq(emp_num):
         emp_num)
     response = requests.get(url)
     response_json = response.json()
-    username = response_json.get("username")
+    username = response_json.get("name")
     with urlopen("https://jsonplaceholder.typicode.com/todos?userId={}"
                  .format(emp_num)) as req:
         body = req.read()
@@ -32,13 +33,13 @@ def empreq(emp_num):
                 num_completed += 1
             j += 1
 
-        print("Employee {} is done with tasks ({}/{}):".format(
+        print("Employee {} is done with tasks({}/{}):".format(
             username, num_completed, len(res)))
 
         k = 0
         for itm in res:
             if res[k].get("completed") is True:
-                print("\t{}".format(res[k].get("title")))
+                print("\t {}".format(res[k].get("title")))
             k += 1
 
 

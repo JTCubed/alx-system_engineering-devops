@@ -5,10 +5,10 @@ his/her TODO list progress
 """
 
 import csv
-from urllib.request import urlopen
-import sys
 import json
 import requests
+import sys
+from urllib.request import urlopen
 
 
 def empreq(emp_num):
